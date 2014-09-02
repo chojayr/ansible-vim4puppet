@@ -1,0 +1,4 @@
+---
+# Task file for vim4puppet
+- include: common.yml
+- include: vimsetup.yml

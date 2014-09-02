@@ -1,0 +1,25 @@
+---
+
+#Install module and enhancement on vim
+
+- name: Create ~/.vim/autoload
+  file: path={{ user_home }}/.vim/autoload owner={{ user }} group={{ group }} mode=0755 state=directory
+
+- name: Create ~/.vim/bundle
+  file: path={{ user_home }}/.vim/bundle owner={{ user }} group={{ group }} mode=0755 state=directory
+
+- name: Copy ~/.vim/autoload/pathogen.vim
+  copy: src=files/pathogen.vim dest={{ user_home }}/.vim/autoload/pathogen.vim owner={{ user }} group={{ group }} mode=0644 
+
+- name: clone the syntastic
+  git: repo=https://github.com/scrooloose/syntastic.git dest={{ user_home }}/.vim/bundle/syntastic
+
+- name: clone the Tabular
+  git: repo=https://github.com/godlygeek/tabular.git dest={{ user_home }}/.vim/bundle/tabular
+
+- name: clone the vim-puppet
+  git: repo=https://github.com/rodjek/vim-puppet.git dest={{ user_home }}/.vim/bundle/vim-puppet
+
+- name: created a ~/.vimrc
+  template: src=templates/vimrc.j2 dest={{ user_home }}/.vimrc owner={{ user }} group={{ group }} mode=0644 
+

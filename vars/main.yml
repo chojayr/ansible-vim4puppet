@@ -1,0 +1,8 @@
+---
+# username & password
+user: username
+group: group
+
+# home
+user_home: "/home/username"
+

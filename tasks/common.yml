@@ -1,0 +1,27 @@
+---
+# These task install application
+
+## To install packages needed on your machine
+- name: install packages needed from repo for RedHat base
+  yum: pkg={{ item }} state=present
+  sudo: True
+  with_items:
+    - gcc-c++
+    - curl
+    - make
+    - vim-enhanced
+  when: ansible_os_family == 'RedHat'
+
+- name: install packages needed from repo for Debian base
+  apt: pkg={{ item }} state=present
+  sudo: True
+  with_items:
+    - gcc
+    - g++
+    - curl
+    - make
+    - vim
+  when: ansible_os_family == 'Debian'
+
+
+
